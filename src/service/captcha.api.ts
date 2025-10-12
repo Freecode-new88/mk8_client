@@ -3,7 +3,7 @@ import axiosInstance, { ApiResponse } from "./axiosInstance";
 
 export const getcaptcha = async (): Promise<ApiResponse> => {
     try {
-      let path = `/captcha/get-verification-code?site=${site}`;
+      let path = `/captcha/get-verification-code?site=${site}&date=${Date.now()}`;
       const response = await axiosInstance.get<ApiResponse>(path);
       console.log(response);
       

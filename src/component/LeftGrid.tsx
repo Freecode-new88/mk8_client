@@ -1,11 +1,6 @@
 import { Box, Grid2, keyframes } from '@mui/material';
 import { FC } from 'react';
-
-import Gifbox_code4_1_1 from '../assets/left/Gifbox-code4-1 1.png';
-import model from '../assets/left/model.png';
-import Gifbox_code4_1 from '../assets/left/Gifbox-code4 1.png';
 import Gifbox_code2_1 from '../assets/left/Gifbox-code2 1.png';
-import casino from '../assets/left/casino.png';
 // Define keyframes for the animation
 const moveBottomToTop = keyframes`
   0% {
@@ -22,11 +17,11 @@ const moveBottomToTop = keyframes`
 `;
 
 
-export interface LeftGridProps { }
+export interface LeftGridProps { keyboardActive: boolean }
+
 const LeftGrid: FC<LeftGridProps> = () => {
     
     return (
-
         <Grid2
             size={{ xs: 12, sm: 12, md: 12, lg: 6, xl: 6 }} // All screen sizes: xs, sm, md, lg, xl
             sx={{
@@ -43,18 +38,21 @@ const LeftGrid: FC<LeftGridProps> = () => {
             <Box
                 component="img"
                 draggable={false}
-                src={model}
+                src={"/images/0H6A8362-1.webp"}
                 alt="Model"
                 sx={{
+                    display: { xs: "block", md: "none" },
                     position: 'absolute',
                     bottom: { xs: -110, sm: -250, md: -310, lg: -100 }, // Adjust bottom positioning for mobile, iPad, and PC
                     right: { xs: 25, sm: 70, md: 80,  lg: -20 }, // Adjust right positioning for mobile, iPad, and PC
                     maxWidth: { xs: '80%', sm: '65%', md: '65%', lg: '80%'}, // Adjust maxWidth for mobile, iPad, and PC
-                    zIndex: 1000,
+                    zIndex: 1,
+                    transform: "scale(1.2)", // ✅ zoom in 10%
+                    transformOrigin: "center", 
                 }}
             />
             {/* Model casino */}
-            <Box
+            {/* <Box
                 component="img"
                 src={casino}
                 alt="Model"
@@ -67,7 +65,7 @@ const LeftGrid: FC<LeftGridProps> = () => {
                     maxWidth: { xs: '90%', sm: '65%', md: '95%' }, // Adjust maxWidth for mobile, iPad, and PC
                     zIndex: 9,
                 }}
-            />
+            /> */}
             {/* Model Gifbox-code2 1 */}
             <Box
                 component="img"
@@ -86,7 +84,7 @@ const LeftGrid: FC<LeftGridProps> = () => {
                 }}
             />
             {/* Model Gifbox-code4 1 */}
-            <Box
+            {/* <Box
                 component="img"
                 src={Gifbox_code4_1}
                 draggable={false}
@@ -98,9 +96,9 @@ const LeftGrid: FC<LeftGridProps> = () => {
                     maxWidth: { xs: '60%', sm: '60%', md: '60%', lg: '70%'}, // Adjust maxWidth for mobile, iPad, and PC
                     zIndex: 11,
                 }}
-            />
+            /> */}
             {/* Gifbox-code4-1 1 */}
-            <Box
+            {/* <Box
                 component="img"
                 src={Gifbox_code4_1_1}
                 draggable={false}
@@ -112,7 +110,7 @@ const LeftGrid: FC<LeftGridProps> = () => {
                     maxWidth: { xs: '50%', sm: '50%', md: '50%' }, // Adjust maxWidth for mobile, iPad, and PC
                     zIndex: 11,
                 }}
-            />
+            /> */}
         </Grid2>
     );
 };

@@ -7,6 +7,7 @@ const ParticleCanvas: React.FC = () => {
     useEffect(() => {
         let particles: Particle[] = [];
         let sketch: p5;
+        let bg: p5.Image | null = null;
 
         class Particle {
             p: p5;
@@ -38,32 +39,42 @@ const ParticleCanvas: React.FC = () => {
             finished() {
                 return this.alpha < 0;
             }
-            show() {
-                const r = this.p.red(this.c);
-                const g = this.p.green(this.c);
-                const b = this.p.blue(this.c);
+            // show() {
+            //     const r = this.p.red(this.c);
+            //     const g = this.p.green(this.c);
+            //     const b = this.p.blue(this.c);
 
-                this.p.fill(r, g, b, this.alpha);
-                this.p.noStroke();
-                this.p.ellipse(this.x, this.y, this.size);
-            }
+            //     this.p.fill(r, g, b, this.alpha);
+            //     this.p.noStroke();
+            //     this.p.ellipse(this.x, this.y, this.size);
+            // }
         }
 
         const sketchFn = (p: p5) => {
-            p.setup = () => {
+            p.setup = async () => {
                 p.createCanvas(p.windowWidth, p.windowHeight).parent(containerRef.current!);
                 p.noStroke();
+                bg = await p.loadImage("/images/0H6A8283-1.webp");
             };
 
             p.draw = () => {
                 p.clear(); // transparent background
+                 if (bg) {
+                    const isMobile = p.width < 768;
+                    if (!isMobile) {
+                        const scale = p.width / bg.width;
+                        const newW = p.width;
+                        const newH = bg.height * scale;
+                        p.image(bg, 0, 0, newW, newH);
+                    }
+                }
                 if (p.frameCount % 3 === 0) {
                     particles.push(new Particle(p, p.random(p.width), p.height + 10));
                 }
                 for (let i = particles.length - 1; i >= 0; i--) {
                     const pt = particles[i];
                     pt.update();
-                    pt.show();
+                    // pt.show();
                     if (pt.finished()) {
                         particles.splice(i, 1);
                     }

@@ -1,6 +1,6 @@
 import { Box, Grid2, Typography, TextField, Button, useMediaQuery } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
-import mk8 from '../assets/mk8.png'
+import NEW88_3 from '../assets/MK8.png';
 import { ArrowCircleRight, LocalOfferOutlined } from '@mui/icons-material';
 import { readStyles } from '../styles/app.style';
 import { getcaptcha } from '../service/captcha.api';
@@ -13,10 +13,12 @@ export interface RightGridProps {
   setCodeGet: React.Dispatch<React.SetStateAction<CodeModel | null>>
   setCode: React.Dispatch<React.SetStateAction<string>>
   code: string
+  keyboardActive: boolean;
+  setKeyboardActive: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 
-const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode }) => {
+const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode, setKeyboardActive }) => {
   const isIPhoneSE = useMediaQuery('(max-height: 740px)');
 
   const [errMass, seterrMass] = useState<String>("")
@@ -59,8 +61,8 @@ const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode }) =
           showCancelButton: true,
           cancelButtonText: "ยกเลิก",
           focusConfirm: false,
-          confirmButtonColor: "#ff7f00",   // 🔥 new88 orange
-          cancelButtonColor: "#6c757d",   // เทา
+          confirmButtonColor: "#F9C924",   // 🔥 MK8 fold
+          cancelButtonColor: "#010202ff",   // เทา
           preConfirm: () => {
             const captchaInput = (document.getElementById("captcha-input") as HTMLInputElement)?.value.trim();
             if (!captchaInput) {
@@ -106,7 +108,7 @@ const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode }) =
                 title: "การตรวจสอบล้มเหลว",
                 text: getCode?.message || "Captcha ไม่ถูกต้อง หรือโค้ดไม่ถูกต้อง",
                 confirmButtonText: "ตกลง",
-                confirmButtonColor: "#ff7f00", // new88 color
+                confirmButtonColor: "#F9C924", // mk8 color
               });
             }
           } catch (error) {
@@ -146,12 +148,12 @@ const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode }) =
           alignItems: 'center',
 
         }}>
-          <Box component={'img'} draggable={false} src={mk8} sx={{ width: { xs: isIPhoneSE ? '50%' : '60%', sm: isIPhoneSE ? '30%' : '60%', md: '50%' } }} />
+          <Box component={'img'} draggable={false} src={NEW88_3} sx={{ width: { xs: isIPhoneSE ? '50%' : '60%', sm: isIPhoneSE ? '30%' : '60%', md: '50%' } }} />
           <Box sx={{
             mt: { xs: 5, sm: 3, md: 5 },
             p: 2,
             pt: 0,
-            backgroundColor: 'rgba(56, 65, 84, 0.9)',
+            backgroundColor: 'rgba(255, 255, 255, 0.9)',
             color: "#FFFFFF",
             borderRadius: 5,
             display: 'flex',
@@ -184,9 +186,9 @@ const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode }) =
                 mb: isIPhoneSE ? 3 : 5
               }}
             >
-              <Box sx={{ display: 'flex', alignItems: 'center', color: '#FF8B00' }}>
-                <LocalOfferOutlined sx={{ color: '#FF8B00' }} />
-                <Box sx={{ ml: 1, color: '#FF8B00', fontWeight: 'bold' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', color: '#F9C924' }}>
+                <LocalOfferOutlined sx={{ color: '##c7a11b' }} />
+                <Box sx={{ ml: 1, color: '#c7a11b', fontWeight: 'bold' }}>
                   โค้ดโปรโมชั่น
                 </Box>
               </Box>
@@ -199,7 +201,6 @@ const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode }) =
                 required
                 onChange={(value) => setCode(value.target.value)}
                 variant="outlined"
-                placeholder="กรอกโค้ด"
                 slotProps={{
                   formHelperText: {
                     sx: {
@@ -216,11 +217,11 @@ const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode }) =
                       borderColor: '#FFFFFF', // Optional hover effect for border
                     },
                     '&.Mui-focused fieldset': {
-                      borderColor: '#FF8B00', // White border when focused
+                      borderColor: '#F9C924', // Gold border when focused
                     },
                   },
                   '& .MuiInputBase-input': {
-                    color: '#FFFFFF', // Input value color (white)
+                    color: '#c7a11b', // Input value color (white)
                   },
                   '& .MuiInputBase-input::placeholder': {
                     color: '#FFFFFF4D', // Gray placeholder color
@@ -239,7 +240,7 @@ const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode }) =
                 size="small"
                 variant="contained"
                 sx={{
-                  background: `linear-gradient(270deg, #FF8B00 0%, #FF4237 100%)`, // New88 gradient
+                  background: `linear-gradient(270deg, #F9C924 0%, #FF4237 100%)`, // MK8 gradient
                   border: 1,
                   color: '#fff',
                   padding: '10px 20px',
@@ -247,7 +248,7 @@ const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode }) =
                   borderRadius: '5px',
                   fontSize: { xs: isIPhoneSE ? 12 : 15, sm: isIPhoneSE ? 13 : 15, md: 18 },
                   '&:hover': {
-                    background: `linear-gradient(270deg, #FF4237 0%, #FF8B00 100%)`, // reversed for hover
+                    background: `linear-gradient(270deg, #FF4237 0%, #F9C924 100%)`, // reversed for hover
                   },
                 }}
                 fullWidth
@@ -273,9 +274,14 @@ const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode }) =
 
                 <Button
                   variant="outlined"
-                  sx={{ ...readStyles, mb: 1 }}
+                  sx={{ 
+                    ...readStyles, 
+                    mb: 1,
+                    background: `linear-gradient(270deg, #FF4237 0%, #F9C924 100%)`,
+                    color: `black`
+                  }}
                   fullWidth
-                  endIcon={<ArrowCircleRight sx={{ color: '#FF8B00' }} />}
+                  endIcon={<ArrowCircleRight sx={{ color: '#F9C924' }} />}
                 >
                   เข้าร่วมกลุ่มรับโปรโมชั่น
                 </Button>

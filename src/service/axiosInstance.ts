@@ -14,6 +14,7 @@ export interface ApiResponse {
   captchaUrl?: string;
   token?: string;
   message?: string;
+  success?: boolean;
 }
 
 // Define the Axios instance with a custom configuration

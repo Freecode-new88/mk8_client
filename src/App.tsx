@@ -1,4 +1,5 @@
 import './App.css';
+import { useEffect, useState } from 'react';
 import { Box, Button, Grid2 } from '@mui/material';
 import confetti from "canvas-confetti"
 import { boxStyles, buttonStyles } from './styles/app.style';
@@ -6,34 +7,46 @@ import LeftGrid from './component/LeftGrid';
 import RightGrid from './component/RightGrid';
 import MobileButton from './component/mobileButton';
 import PromoCodeDialog from './component/PromoCodeDialog';
-import { useState } from 'react';
 import { CodeModel } from './model/code.model';
-//import ConfettiExplosion from 'react-confetti-explosion';
 import { showSuccessDialog } from './component/SuccessDialog';
-//import { addCodeClient } from './service/client.api';
+import { addCodeClient } from './service/client.api';
 import ParticleCanvas from './component/ParticleCanvas';
+import { homeLink } from './configs/url.config';
+import FingerprintJS from "@fingerprintjs/fingerprintjs";
+import PopupLoader from './component/PopupLoader';
+
 
 function App() {
   const [open, setOpen] = useState(false);
-  const [_openSuccess, setOpenSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [codeGet, setCodeGet] = useState<CodeModel | null>(null)
   const [user, setUser] = useState("")
   const [code, setCode] = useState<string>("")
+  const [fp, setFp] = useState<string>("");
+  const [keyboardActive, setKeyboardActive] = useState(false);
 
-  const handleConfirm = async (point: number) => {
+  useEffect(() => {
+    FingerprintJS.load()
+      .then(fpAgent => fpAgent.get())
+      .then(result => {
+        setFp(result.visitorId);
+      });
+  }, []);
+
+  const handleConfirm = async (_point: number) => {
     try {
-      setOpenSuccess(true);
-      showSuccessDialog({ setOpen, point: point.toString() });
-      setCode("");
-      handleConfetti()
-      /*const res = await addCodeClient(codeGet?.promo_code, user)
-      if (res.valid) {
-        setOpenSuccess(true);
-        showSuccessDialog({ setOpen, point: res?.detail?.point });
+      setLoading(true)
+      setOpen(false);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const res = await addCodeClient(codeGet?.promo_code, user, fp)
+      if (res?.success) {
+        setLoading(false)
+        showSuccessDialog({ setOpen, point: _point.toString() });
         setCodeGet(null)
         setCode("")
         setUser("")
-      }*/
+        handleConfetti()
+      }
     } finally {
       setOpen(false);
     }
@@ -104,11 +117,11 @@ function App() {
         </Box>
 
         {/* Foreground Content */}
-        <Button variant="contained" sx={{ ...buttonStyles, zIndex: 1000 }}>
+        <Button onClick={() => window.open(homeLink, "_blank")} variant="contained" sx={{ ...buttonStyles, zIndex: 1000 }}>
           หน้าหลัก
         </Button>
 
-        <Box sx={{ display: { xs: "contents", sm: "contents", md: "none" }, zIndex: 1 }}>
+        <Box onClick={() => window.open(homeLink, "_blank")} sx={{ display: { xs: "contents", sm: "contents", md: "none" }, zIndex: 1 }}>
           <MobileButton />
         </Box>
 
@@ -126,12 +139,14 @@ function App() {
             position: "relative",
           }}
         >
-          <LeftGrid />
+          <LeftGrid keyboardActive={keyboardActive} />
           <RightGrid
             setOpen={setOpen}
             setCodeGet={setCodeGet}
             code={code}
             setCode={setCode}
+            keyboardActive={keyboardActive}
+            setKeyboardActive={setKeyboardActive}
           />
         </Grid2>
       </Box>
@@ -140,7 +155,7 @@ function App() {
         <PromoCodeDialog opent={open && codeGet !== null} setOpen={setOpen} codeGet={codeGet} setUser={setUser} handleConfirm={handleConfirm} user={user} />
         {/* <showSuccessDialog opent={openSuccess} setOpen={setOpenSuccess} point={"100"} /> */}
       </Box>
-
+      <PopupLoader open={loading} />
     </>
   );
 }

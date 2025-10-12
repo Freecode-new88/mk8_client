@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "2f1b8a1c-5593-4961-9dac-1b314e358db9",
+		"name": "API Flatform Jun88 Thai",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37698342"
+	},
+	"item": [
+		{
+			"name": "info account",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.ewogICJpYXQiIDogMTczNTA2MjM4MywKICAiZXhwIiA6IDE3MzUwNzMxODMsCiAgInVzZXJuYW1lIiA6ICJrdDAwMDciLAogICJlbWFpbCIgOiBudWxsLAogICJyb2xlIiA6ICIiLAogICJleHRyYSIgOiAie30iLAogICJpc29wIiA6IHRydWUKfQ.YGHOlD5tDtahPIfjGuewpF5loF-pUZyuSLgOdSKOybk",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+						"type": "text"
+					},
+					{
+						"key": "referer",
+						"value": "https://bo.mb66.tech/",
+						"type": "text"
+					},
+					{
+						"key": "origin",
+						"value": "https://bo.mb66.tech",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"playerid\": \"xuxian\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-bo-thai-jun88k36.8878388.com/api/player/find-player?site=thai_jun88k36",
+					"protocol": "https",
+					"host": [
+						"api-bo-thai-jun88k36",
+						"8878388",
+						"com"
+					],
+					"path": [
+						"api",
+						"player",
+						"find-player"
+					],
+					"query": [
+						{
+							"key": "site",
+							"value": "thai_jun88k36"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add point",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"playerid\": \"xuxian\",\r\n    \"point\": 1,\r\n    \"audit\": 1,\r\n    \"remarks\": \"ITCODE\",   /// Memo\r\n    \"ecremarks\": \"IT TEST ADD POINT\",  // PortalMemoValue\r\n    \"sendmessage\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-bo-thai-jun88k36.8878388.com/api/manualadjusts/add-batch-with-audit?site=thai_jun88k36",
+					"protocol": "https",
+					"host": [
+						"api-bo-thai-jun88k36",
+						"8878388",
+						"com"
+					],
+					"path": [
+						"api",
+						"manualadjusts",
+						"add-batch-with-audit"
+					],
+					"query": [
+						{
+							"key": "site",
+							"value": "thai_jun88k36"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -219,9 +219,10 @@ const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode, set
                     '&.Mui-focused fieldset': {
                       borderColor: '#F9C924', // Gold border when focused
                     },
+                    fontSize: '1.3rem',
                   },
                   '& .MuiInputBase-input': {
-                    color: '#c7a11b', // Input value color (white)
+                    color: '#f9c924', // Input value color (white)
                   },
                   '& .MuiInputBase-input::placeholder': {
                     color: '#FFFFFF4D', // Gray placeholder color
@@ -281,7 +282,7 @@ const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode, set
                     color: `#FFF`
                   }}
                   fullWidth
-                  endIcon={<ArrowCircleRight sx={{ color: '#f9c924' }} />}
+                  endIcon={<ArrowCircleRight sx={{ color: '#f7bf08ff' }} />}
                 >
                   เข้าร่วมกลุ่มรับโปรโมชั่น
                 </Button>

@@ -69,8 +69,8 @@ export const buttonStyles: SxProps<Theme> = {
 export const readStyles: SxProps<Theme> = {
   color: "#ffffff",
   background: '#38415480',
-  borderColor: '#FF8B00',
-  fontSize: { xs: 14, sm: 14, md: 13 } ,
+  borderColor: '#FFF',
+  fontSize: { xs: 14, sm: 14, md: 17 } ,
   display: 'flex', // Ensures button contents are flexible
   justifyContent: 'space-between', // Centers text horizontally
   alignItems: 'center', // Centers icon and text vertically

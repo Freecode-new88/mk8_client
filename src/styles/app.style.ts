@@ -39,7 +39,7 @@ export const buttonStyles: SxProps<Theme> = {
   top: { xs: 20, sm: 30, md: 50 },
   right: { xs: 20, sm: 30, md: 50 },
   // NEW88-like gradient (FF8B00 → FF4237)
-  background: 'linear-gradient(270deg, #FF8B00 0%, #FF4237 100%)',
+  background: 'linear-gradient(270deg, #f9c924 0%, #fdeeb9 100%)',
   color: '#FFFFFF',
   fontSize: { xs: '14px', sm: '16px', md: '20px' },
   fontWeight: 'bold',
@@ -53,7 +53,7 @@ export const buttonStyles: SxProps<Theme> = {
   textAlign: 'center',
   '&:hover': {
     // slightly brighter/orange-forward hover (FF9E00 → FF521A)
-    background: 'linear-gradient(270deg, #FF9E00 0%, #FF521A 100%)',
+    background: 'linear-gradient(270deg, #fdeeb9 0%, #f9c924 100%)',
     boxShadow: '0px 6px 14px rgba(0, 0, 0, 0.25)',
   },
   '&:active': {

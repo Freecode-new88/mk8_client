@@ -166,7 +166,7 @@ const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode, set
             <Typography variant="h4" sx={{
               pt: 0,
               fontWeight: 'bold',
-              backgroundColor: 'rgba(84, 56, 56, 0.3)',
+              backgroundColor: '#f9c72486',
               borderBottomLeftRadius: 20,
               borderBottomRightRadius: 20,
             }}>
@@ -188,7 +188,7 @@ const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode, set
             >
               <Box sx={{ display: 'flex', alignItems: 'center', color: '#F9C924' }}>
                 <LocalOfferOutlined sx={{ color: '##c7a11b' }} />
-                <Box sx={{ ml: 1, color: '#c7a11b', fontWeight: 'bold' }}>
+                <Box sx={{ ml: 1, color: '#f9c924', fontWeight: 'bold' }}>
                   โค้ดโปรโมชั่น
                 </Box>
               </Box>
@@ -240,7 +240,7 @@ const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode, set
                 size="small"
                 variant="contained"
                 sx={{
-                  background: `linear-gradient(270deg, #F9C924 0%, #FF4237 100%)`, // MK8 gradient
+                  background: `linear-gradient(90deg, #fdeeb9 0%, #f9c924 100%)`, // MK8 gradient
                   border: 1,
                   color: '#fff',
                   padding: '10px 20px',
@@ -248,7 +248,7 @@ const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode, set
                   borderRadius: '5px',
                   fontSize: { xs: isIPhoneSE ? 12 : 15, sm: isIPhoneSE ? 13 : 15, md: 18 },
                   '&:hover': {
-                    background: `linear-gradient(270deg, #FF4237 0%, #F9C924 100%)`, // reversed for hover
+                    background: `linear-gradient(90deg, #f9c924 0%, #fdeeb9 100%)`, // reversed for hover
                   },
                 }}
                 fullWidth
@@ -277,11 +277,11 @@ const RightGrid: FC<RightGridProps> = ({ setOpen, setCodeGet, code, setCode, set
                   sx={{ 
                     ...readStyles, 
                     mb: 1,
-                    background: `linear-gradient(270deg, #FF4237 0%, #F9C924 100%)`,
-                    color: `black`
+                    background: `linear-gradient(270deg, #fdeeb9 0%, #f9c924 100%)`,
+                    color: `#FFF`
                   }}
                   fullWidth
-                  endIcon={<ArrowCircleRight sx={{ color: '#F9C924' }} />}
+                  endIcon={<ArrowCircleRight sx={{ color: '#f9c924' }} />}
                 >
                   เข้าร่วมกลุ่มรับโปรโมชั่น
                 </Button>

@@ -43,9 +43,9 @@ const LeftGrid: FC<LeftGridProps> = () => {
                 sx={{
                     display: { xs: "block", md: "none" },
                     position: 'absolute',
-                    bottom: { xs: -110, sm: -250, md: -310, lg: -100 }, // Adjust bottom positioning for mobile, iPad, and PC
-                    right: { xs: 25, sm: 70, md: 80,  lg: -20 }, // Adjust right positioning for mobile, iPad, and PC
-                    maxWidth: { xs: '80%', sm: '65%', md: '65%', lg: '80%'}, // Adjust maxWidth for mobile, iPad, and PC
+                    bottom: { xs: 0, sm: 0, md: -310, lg: -100 }, // Adjust bottom positioning for mobile, iPad, and PC
+                    right: { xs: 0, sm: 70, md: 80,  lg: -20 }, // Adjust right positioning for mobile, iPad, and PC
+                    maxWidth: { xs: '100%', sm: '100%', md: '65%', lg: '80%'}, // Adjust maxWidth for mobile, iPad, and PC
                     zIndex: 1,
                     transform: "scale(1.2)", // ✅ zoom in 10%
                     transformOrigin: "center", 

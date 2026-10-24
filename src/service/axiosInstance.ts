@@ -80,3 +80,25 @@ axiosInstance.interceptors.response.use(
 );
 
 export default axiosInstance;
+
+// Proof of the successful CAPTCHA step, scoped to a promotion and API path.
+const redemptionProofs = new Map<string, string>();
+axiosInstance.interceptors.response.use(response => {
+  const url = new URL(response.config.url ?? "", response.config.baseURL);
+  if (/\/api\/(client|team)\/get-code$/.test(url.pathname) && response.data?.valid === true) {
+    const body = typeof response.config.data === "string" ? JSON.parse(response.config.data) : response.config.data;
+    const promo = url.searchParams.get("promo_code");
+    if (promo && typeof body?.token === "string") redemptionProofs.set(url.pathname.split("/")[1] + ":" + promo, body.token);
+  }
+  return response;
+});
+axiosInstance.interceptors.request.use(config => {
+  const url = new URL(config.url ?? "", config.baseURL);
+  if (/\/user\/?$/.test(url.pathname)) {
+    const key = url.pathname.split("/")[1] + ":" + config.data?.promo_id;
+    const proof = redemptionProofs.get(key);
+    if (proof) config.headers["x-redemption-token"] = proof;
+    redemptionProofs.delete(key);
+  }
+  return config;
+});
